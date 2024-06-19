@@ -23,58 +23,41 @@ def home():
         }
         .block {
             background-color: #f9f9f9;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            padding: 30px;
-            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            margin: 10px;
             text-align: center;
             flex: 1;
-            min-width: 200px;
-            max-width: 250px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            min-width: 150px;
+            max-width: 200px;
         }
         .block:hover {
-            background-color: #e9e9e9;
-            transform: translateY(-10px);
+            background-color: #f1f1f1;
             cursor: pointer;
-        }
-        .block img {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 10px;
         }
         </style>
         """, unsafe_allow_html=True
     )
-
     languages = {
-        "Python": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
-        "Java": "https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg",
-        "C++": "https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg",
-        "C#": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Csharp_Logo.png",
-        "PHP": "https://upload.wikimedia.org/wikipedia/commons/2/27/PHP-logo.svg",
-        "SQL": "https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png"
+        "Python": "python-icon.png",
+        "Java": "java-icon.png",
+        "C++": "cpp-icon.png",
+        "C#": "csharp-icon.png",
+        "PHP": "php-icon.png",
+        "SQL": "sql-icon.png"
     }
 
+    selected_language = None
     st.markdown('<div class="block-container">', unsafe_allow_html=True)
     cols = st.columns(len(languages))
-
     for idx, (lang, icon) in enumerate(languages.items()):
         with cols[idx]:
-            if st.markdown(
-                f"""
-                <div class="block" onclick="window.location.href='/?lang={lang}'">
-                    <img src="{icon}" alt="{lang} logo"/>
-                    <h3>{lang}</h3>
-                </div>
-                """, unsafe_allow_html=True
-            ):
-                st.session_state["language"] = lang
-
+            if st.button(f"{lang}"):
+                selected_language = lang
     st.markdown('</div>', unsafe_allow_html=True)
 
-    if st.experimental_get_query_params().get('lang'):
-        selected_language = st.experimental_get_query_params().get('lang')[0]
+    if selected_language:
         st.session_state["language"] = selected_language
         st.experimental_rerun()
 
