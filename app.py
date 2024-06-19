@@ -26,8 +26,8 @@ def topic_page():
 
     if topic_choice:
         video_url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"  # Replace with actual video link
-        notes_path = f"{topic_choice}_notes.pdf"  # Replace with actual notes file path
-        questions_path = f"{topic_choice}_questions.pdf"  # Replace with actual questions file path
+        notes_path = f"Programming 631 Study Guide (Updated - 2023) (1).pdf"  # Replace with actual notes file path
+        questions_path = f"Java-Interview-Questions-and-Answers-PDF-Free-Download.pdf"  # Replace with actual questions file path
         
         st.header(topic_choice)
         st.subheader("Video Lesson")
